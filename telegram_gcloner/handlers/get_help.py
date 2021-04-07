@@ -20,10 +20,10 @@ def init(dispatcher: Dispatcher):
 def get_help(update, context):
     message = 'Send a Google Drive link, or forward a message with a Google Drive link to manually transfer.\n' \
               'Configuration with /sa and /folders is required.\n\n' \
-              'Commands:\n\n' \
-              '/folders - Set favorite folders\n' \
-              '/sa - Private chat only, upload a ZIP containing SA accounts with this command as the subject.\n' \
-              '/help - Output this message\n'
+              '📚 Commands:\n' \
+              ' │ /folders - Set favorite folders\n' \
+              ' │ /sa - Private chat only, upload a ZIP containing SA accounts with this command as the subject.\n' \
+              ' │ /help - Output this message\n'
     rsp = update.message.reply_text(message)
     rsp.done.wait(timeout=60)
     message_id = rsp.result().message_id

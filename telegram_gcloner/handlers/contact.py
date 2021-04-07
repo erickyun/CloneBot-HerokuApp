@@ -16,15 +16,15 @@ logger = logging.getLogger(__name__)
 
 def init(dispatcher: Dispatcher):
     """Provide handlers initialization."""
-    dispatcher.add_handler(CommandHandler('4999baoyue', contact, pass_args=True))
+    dispatcher.add_handler(CommandHandler('contact', contact, pass_args=True))
 
 
 @restricted_private
 def contact(update, context):
-    text = update.message.text.strip('/4999baoyue')
+    text = update.message.text.strip('/contact')
     if text:
         context.bot.send_message(chat_id=config.USER_IDS[0],
-                                 text='Received message from {} ({}):'.format(
+                                 text='📬 Received message from {} ({}):'.format(
                                      mention_html(update.effective_user.id, html.escape(update.effective_user.name)),
                                      update.effective_user.id),
                                  parse_mode=ParseMode.HTML)
@@ -32,7 +32,7 @@ def contact(update, context):
                                     from_chat_id=update.message.chat_id,
                                     message_id=update.message.message_id)
         logger.info('{} ({}) left a message: {}'.format(update.effective_user.name, update.effective_user.id, text))
-        rsp = update.message.reply_text('Roger that.')
+        rsp = update.message.reply_text('Roger that 👍')
         rsp.done.wait(timeout=60)
         message_id = rsp.result().message_id
         if update.message.chat_id < 0:
