@@ -6,7 +6,7 @@
 
 <!-- > ## A simple bot to copy and duplicate team drives -->
 <p align="center">
-  <img src="https://telegra.ph/file/51e1405d581368f2230a5.png" />
+  <img src="https://i.imgur.com/QkxmCOp.png" />
 </p>
 
 <br />
