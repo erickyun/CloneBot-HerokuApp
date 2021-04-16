@@ -3,7 +3,12 @@
 <br />
 
 <p align="center">CloneBot is a telegram bot that allows you to copy folder/team drive to team drives. One of the main advantage of this bot is that you can host it to Heroku for free.<p/>
+<!-- > ## A simple script to automate the google Shared Drives creation. -->
+
 [![CloneBot](https://telegra.ph/file/51e1405d581368f2230a5.png)](https://github.com/MsGsuite/CloneBot)
+[![Create-Google-Shared-Drive](https://telegra.ph/file/51e1405d581368f2230a5.png)](https://github.com/MsGsuite/MsGsuite)
+
+<br />
 
 ### ✅ Advantages
 - Use server side copy
