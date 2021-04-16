@@ -18,11 +18,17 @@
 > 
 > gclone_para_override = leave this empty if you don't know how to use it
 
+3. Install [python](https://www.python.org/downloads/)
+4. open CMD and cd to the folder containing the bot
+5. run `pip install -r requirements.txt`
+6. cd to the telegram_gcloner folder and run : `py telegram_gcloner.py`
+7. Start your bot and you can copy your data !
+<br/><br/>
+
 ## 📢 Follow us:
 - Team drive generator : https://td.msgsuite.workers.dev/
 - Telegram channel : https://t.me/MsGsuite
 - Telegram chat : https://t.me/MsGsuiteChat
-<br/><br/>
 
 ## ❤️ Credits & thanks :
 - [wrenfairbank](https://github.com/wrenfairbank/telegram_gcloner) for the original python script
