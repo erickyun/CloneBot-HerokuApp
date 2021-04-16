@@ -18,7 +18,11 @@
 > 
 > gclone_para_override = leave this empty if you don't know how to use it
 
-
+## 📢 Follow us:
+- Team drive generator : https://td.msgsuite.workers.dev/
+- Telegram channel : https://t.me/MsGsuite
+- Telegram chat : https://t.me/MsGsuiteChat
+<br/><br/>
 
 ## ❤️ Credits & thanks :
 - [wrenfairbank](https://github.com/wrenfairbank/telegram_gcloner) for the original python script
