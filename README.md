@@ -1,3 +1,17 @@
+
+### ✅ Advantages
+- Use server side copy
+- Bypass the 750Gb a day limit thanks to Service accounts
+- Duplicate team drive
+- Copy public folders & files to team drives
+- [Host it to heroku](https://github.com/MsGsuite/CloneBot_Heroku)
+
+### ❌ Drawbacks
+- Does not support files upload (only copy)
+- You cannot copy the data to My Drive
+Note : there are hidden features, check at the source code of the bot to find them 🙃
+<br/><br/>
+
 ## ⚛️ Deploying on Heroku
 --> https://github.com/MsGsuite/CloneBot_Heroku
 <br/><br/>
