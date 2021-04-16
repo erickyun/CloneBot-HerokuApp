@@ -1,6 +1,6 @@
 ## ⚛️ Deploying on Heroku
 --> https://github.com/MsGsuite/CloneBot_Heroku
-<br/>
+<br/><br/>
 
 ## 💠 Host the bot on your computer
 
