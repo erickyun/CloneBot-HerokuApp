@@ -6,7 +6,7 @@
 
 <!-- > ## A simple bot to copy and duplicate team drives -->
 
-<p align="center">[![CloneBot](https://telegra.ph/file/51e1405d581368f2230a5.png)](https://github.com/MsGsuite/CloneBot)<p/>
+[![CloneBot](https://telegra.ph/file/51e1405d581368f2230a5.png)](https://github.com/MsGsuite/CloneBot)
 
 <br />
 
