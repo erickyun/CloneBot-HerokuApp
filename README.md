@@ -2,7 +2,7 @@
 
 <br />
 
-CloneBot is a telegram bot that allows you to copy folder/team drive to team drives. One of the main advantage of this bot is that you can host it to Heroku for free.
+<p align="center">CloneBot is a telegram bot that allows you to copy folder/team drive to team drives. One of the main advantage of this bot is that you can host it to Heroku for free.<p/>
 
 ### ✅ Advantages
 - Use server side copy
