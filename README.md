@@ -32,6 +32,11 @@ Note : there are hidden features, check at the source code of the bot to find th
 --> https://github.com/MsGsuite/CloneBot_Heroku
 <br/><br/>
 
+## 📱 Run the bot on your phone using termux
+
+--> https://telegra.ph/Clone-Bot-Termux-04-30
+<br/><br/>
+
 ## 💠 Host the bot on your computer
 
 1. Download the repo : https://github.com/MsGsuite/CloneBot/archive/refs/heads/master.zip
@@ -66,3 +71,4 @@ Note : there are hidden features, check at the source code of the bot to find th
 - [smartass08](https://github.com/smartass08/telegram_gcloner) to adapt the scrip to heroku
 - [anymeofu](https://github.com/anymeofu/CloneBot) for making the Direct Heroku deployable Version
 - Zero-The-Kamisama to making me discover this amazing bot and the detailed instructions
+- [zorgof](https://t.me/zorgof) for the termux script
