@@ -57,6 +57,7 @@ Note : there are hidden features, check at the source code of the bot to find th
 [![Deploy](https://telegra.ph/file/e7d224c45cf1d106a28fa.png)](https://www.heroku.com/deploy)
 
 
+**Note: after deploy turn on worker in Resources tab and install Heroku Postgres addon.**
 
 ## ☂ Deploying on Railway.app
 
