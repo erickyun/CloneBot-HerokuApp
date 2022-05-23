@@ -36,7 +36,7 @@ def vip(update: Update, context: CallbackContext):
         new_vip.append(user_id)
         context.bot_data['vip'] = new_vip
     else:
-        update.message.reply_text('Already exists in VIP.')
+        update.message.reply_text('Already exist in VIP.')
         return
     context.dispatcher.update_persistence()
     update.message.reply_text('Added to VIP.')
@@ -55,9 +55,9 @@ def unvip(update: Update, context: CallbackContext):
         new_vip.remove(user_id)
         context.bot_data['vip'] = new_vip
         context.dispatcher.update_persistence()
-        update.message.reply_text('Removed from VIP.')
+        update.message.reply_text('VIP has been removed.')
         logger.info('{} is removed from vip list.'.format(user_id))
         return
     else:
-        update.message.reply_text('User is not VIP.')
+        update.message.reply_text('The user is not in the VIP.')
         return

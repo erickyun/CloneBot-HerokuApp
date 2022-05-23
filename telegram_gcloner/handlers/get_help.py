@@ -18,12 +18,13 @@ def init(dispatcher: Dispatcher):
 
 @restricted
 def get_help(update, context):
-    message = 'Send a Google Drive link, or forward a message with a Google Drive link to manually transfer.\n' \
-              'Configuration with /sa and /folders is required.\n\n' \
-              '📚 Commands:\n' \
-              ' │ /folders - Set favorite folders\n' \
-              ' │ /sa - Private chat only, upload a ZIP containing SA accounts with this command as the subject.\n' \
-              ' │ /help - Output this message\n'
+    message = 'Send google drive link, or forward the information with google drive to save manually.\n' \
+              'Need to use /sa and /folders for configuration\n\n' \
+              'The following is the command of this BOT：\n\n' \
+              '/folders - Set favorite folder\n' \
+              '/sa - For private chat only, upload the ZIP folder containing sa, and write /sa in the title to set Service Account\n' \
+              '/4999baoyue - Private chat only, business negotiation, please attach a message\n' \
+              '/help - Output this help\n'
     rsp = update.message.reply_text(message)
     rsp.done.wait(timeout=60)
     message_id = rsp.result().message_id

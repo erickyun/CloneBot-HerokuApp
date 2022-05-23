@@ -65,23 +65,23 @@ def process_drive_links(update, context):
 
     if not folder_ids:
         return
-    message = '📑 The following files were detected :\n'
+    message = 'The following files were detected：\n'
 
     try:
         gd = GoogleDrive(update.effective_user.id)
     except Exception as e:
-        update.message.reply_text('🔸 Please make sure the SA archive has been uploaded and the collection folder has been configured.\n{}'.format(e))
+        update.message.reply_text('Please confirm that the SA has been uploaded correctly and configure the favorite folder.\n{}'.format(e))
         return
 
     for item in folder_ids:
         try:
             folder_name = gd.get_file_name(item)
         except Exception as e:
-            update.message.reply_text('🔸 Please make sure that the SA archive has been uplaoded and that the SA has permission to access the link.\n{}'.format(e))
+            update.message.reply_text('Please confirm that the SA has been uploaded correctly, and confirm that the SA has the authority to access the link.\n{}'.format(e))
             return
-        message += '     <a href="https://drive.google.com/open?id={}">{}</a>\n'.format(
+        message += '<a href="https://drive.google.com/open?id={}">{}</a>\n'.format(
             item, html.escape(folder_name))
-    message += '\n📂 Please select the target destination'
+    message += '\nPlease select the target team disk'
     fav_folder_ids = context.user_data.get(udkey_folders, None)
 
     callback_query_prefix = 'save_to_folder'
@@ -97,7 +97,7 @@ def process_drive_links(update, context):
             max_per_page=10,
         )
     else:
-        inline_keyboard_drive_ids = [[InlineKeyboardButton(text='⚠️ Use /folders to add a favorite folder', callback_data='#')]]
+        inline_keyboard_drive_ids = [[InlineKeyboardButton(text='If the team disk is not saved, please save it before operation.', callback_data='#')]]
     inline_keyboard = inline_keyboard_drive_ids
     update.message.reply_text(message, parse_mode=ParseMode.HTML,
                               disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(inline_keyboard))
@@ -111,12 +111,12 @@ def save_to_folder_page(update, context):
             (not query.message.reply_to_message or
              query.from_user.id != query.message.reply_to_message.from_user.id):
         alert_users(context, update.effective_user, 'invalid caller', query.data)
-        query.answer(text='Yo-he!', show_alert=True)
+        query.answer(text='Yo ha', show_alert=True)
         return
     match = re.search(r'^save_to_folder_page#(\d+)$', query.data)
     if not match:
         alert_users(context, update.effective_user, 'invalid query data', query.data)
-        query.answer(text='Yo-he!', show_alert=True)
+        query.answer(text='Yo ha', show_alert=True)
         return
     page = int(match.group(1))
     fav_folder_ids = context.user_data.get(udkey_folders, None)
@@ -132,7 +132,7 @@ def save_to_folder_page(update, context):
             max_per_page=10,
         )
     else:
-        inline_keyboard_drive_ids = [[InlineKeyboardButton(text='🔹 If you don\'t have any shared drives, you must get one here : @MsGsuite before you can use this.', callback_data='#')]]
+        inline_keyboard_drive_ids = [[InlineKeyboardButton(text='If the team disk is not saved, please save it before operation.', callback_data='#')]]
     inline_keyboard = inline_keyboard_drive_ids
     query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(inline_keyboard))
 
@@ -143,13 +143,13 @@ def save_to_folder(update, context):
             (not query.message.reply_to_message or
              query.from_user.id != query.message.reply_to_message.from_user.id):
         alert_users(context, update.effective_user, 'invalid caller', query.data)
-        query.answer(text='Yo-he!', show_alert=True)
+        query.answer(text='Yo ha', show_alert=True)
         return
     match = re.search(r'^save_to_folder(?:_page#[\d]+)?,\s*([\dA-Za-z\-_]+)$', query.data)
     fav_folders = context.user_data.get(udkey_folders, {})
     if not match or match.group(1) not in fav_folders:
         alert_users(context, update.effective_user, 'invalid query', query.data)
-        query.answer(text='Yo-he!', show_alert=True)
+        query.answer(text='Yo ha', show_alert=True)
         return
     message = query.message
     if message.caption:
@@ -169,4 +169,4 @@ def save_to_folder(update, context):
     t.start()
     logger.debug('User {} has added task {}.'.format(query.from_user.id, t.ident))
     query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text='Executed', callback_data='#')]]))
+        [[InlineKeyboardButton(text='It has been executed', callback_data='#')]]))

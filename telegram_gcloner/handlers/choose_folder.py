@@ -42,7 +42,7 @@ def chosen_folder(update, context):
             (not query.message.reply_to_message or
              query.from_user.id != query.message.reply_to_message.from_user.id):
         alert_users(context, update.effective_user, 'invalid caller', query.data)
-        query.answer(text='Yo-he!', show_alert=True)
+        query.answer(text='Yo ha', show_alert=True)
         return
     if update.effective_user.id in config.USER_IDS\
             or (context.bot_data.get('vip', None) and update.effective_user.id in context.bot_data['vip']):
@@ -56,7 +56,7 @@ def chosen_folder(update, context):
         gd = GoogleDrive(update.effective_user.id)
     except Exception as e:
         context.bot.send_message(chat_id=update.effective_user.id,
-                                 text='🔸 Please make sure the SA archive has been uploaded and the collection folder has been configured.\n'
+                                 text='Please confirm that the SA has been uploaded correctly and configure the favorite folder.\n'
                                       '<code>{}</code>'.format(html.escape(str(e))),
                                  parse_mode=ParseMode.HTML)
         return
@@ -65,7 +65,7 @@ def chosen_folder(update, context):
     match = re.search(r'^{},(?P<folder_id>[\dA-Za-z\-_]+)$'.format(callback_query_prefix), query.data)
     if not match:
         alert_users(context, update.effective_user, 'invalid query', query.data)
-        query.answer(text='Yo-he!', show_alert=True)
+        query.answer(text='Yo ha', show_alert=True)
         return
     folder_id = match.group('folder_id')
 
@@ -78,7 +78,7 @@ def chosen_folder(update, context):
         current_path_list = gd.get_file_path_from_id(folder_id)
         if not current_path_list:
             alert_users(context, update.effective_user, 'invalid folder id', query.data)
-            query.answer(text='Yo-he!', show_alert=True)
+            query.answer(text='Yo ha', show_alert=True)
             return
         current_path_list.reverse()
         new_fav_folders[folder_id] = {
@@ -90,7 +90,7 @@ def chosen_folder(update, context):
         context.dispatcher.update_persistence()
         set_folders(update, context)
     else:
-        query.answer(text='Maximum {}'.format(max_folders), show_alert=True)
+        query.answer(text='Only {} at most'.format(max_folders), show_alert=True)
     return
 
 
@@ -103,7 +103,7 @@ def choose_folder(update, context):
         gd = GoogleDrive(update.effective_user.id)
     except Exception as e:
         context.bot.send_message(chat_id=update.effective_user.id,
-                                 text='🔸 Please make sure the SA archive has been uploaded and the collection folder has been configured.\n'
+                                 text='Please confirm that the SA has been uploaded correctly and configure the favorite folder.\n'
                                       '<code>{}</code>'.format(html.escape(str(e))),
                                  parse_mode=ParseMode.HTML)
         return
@@ -117,7 +117,7 @@ def choose_folder(update, context):
             folders = gd.get_drives()
             current_folder_id = ''
             context.bot.send_message(chat_id=update.effective_user.id,
-                                     text='Error：\n<code>{}</code>'.format(html.escape(str(e))),
+                                     text='error：\n<code>{}</code>'.format(html.escape(str(e))),
                                      parse_mode=ParseMode.HTML)
 
     callback_query_prefix = 'choose_folder'
@@ -125,7 +125,7 @@ def choose_folder(update, context):
     page = None
     message_id = -1
     if not query:
-        rsp = update.message.reply_text('⚙️ Getting directory...')
+        rsp = update.message.reply_text('Get catalog...')
         rsp.done.wait(timeout=60)
         message_id = rsp.result().message_id
         if not folders:
@@ -138,7 +138,7 @@ def choose_folder(update, context):
                 (not query.message.reply_to_message or
                  query.from_user.id != query.message.reply_to_message.from_user.id):
             alert_users(context, update.effective_user, 'invalid caller', query.data)
-            query.answer(text='Yo-he!', show_alert=True)
+            query.answer(text='Yo ha', show_alert=True)
             return
         message_id = query.message.message_id
         match = re.search(r'^(?P<un>un)?{}(?P<replace>_replace)?(?:_page#(?P<page>\d+))?'
@@ -155,7 +155,7 @@ def choose_folder(update, context):
                     folders = gd.get_drives()
                     current_folder_id = ''
                     context.bot.send_message(chat_id=update.effective_user.id,
-                                             text='⁉️ Error：\n<code>{}</code>'.format(html.escape(str(e))),
+                                             text='error：\n<code>{}</code>'.format(html.escape(str(e))),
                                              parse_mode=ParseMode.HTML)
                 context.user_data[udkey_folders_cache] = copy.deepcopy(folders)
                 if not folders:
@@ -171,10 +171,10 @@ def choose_folder(update, context):
                 folders = gd.get_drives()
                 context.user_data[udkey_folders_cache] = copy.deepcopy(folders)
             if not folders:
-                folders = {'#': 'If you have no shared drives, go to @MsGsuite to get one.'}
+                folders = {'#': 'If the team disk is not saved, please save it before operation.'}
         else:
             alert_users(context, update.effective_user, 'invalid query data', query.data)
-            query.answer(text='Yo-he!', show_alert=True)
+            query.answer(text='Yo ha', show_alert=True)
             return
 
     if not page:
@@ -203,7 +203,7 @@ def choose_folder(update, context):
                 current_path = '/{}{}'.format(item['name'], current_path)
             if len(current_path_list) > 1:
                 inline_keyboard_drive_ids.insert(
-                    0, [InlineKeyboardButton('📁 ' + current_path,
+                    0, [InlineKeyboardButton('📁' + current_path,
                                              callback_data='{},{}'.format(
                                                  callback_query_prefix, current_path_list[1]['folder_id']))])
             else:
@@ -211,14 +211,14 @@ def choose_folder(update, context):
                     0, [InlineKeyboardButton('📁' + current_path,
                                              callback_data=callback_query_prefix)])
             inline_keyboard_drive_ids.append(
-                [InlineKeyboardButton('✔️ Select this folder({})'.format(current_folder_name),
+                [InlineKeyboardButton('Select this folder({})'.format(current_folder_name),
                                       callback_data='chosen_folder,{}'.format(current_folder_id))])
-    inline_keyboard_drive_ids.append([InlineKeyboardButton('🔙 Go back',
+    inline_keyboard_drive_ids.append([InlineKeyboardButton('Back to top',
                                                            callback_data='choose_folder' if current_folder_id else '#'),
-                                      InlineKeyboardButton('Cancel', callback_data='cancel')])
+                                      InlineKeyboardButton('cancel', callback_data='cancel')])
     context.bot.edit_message_text(chat_id=update.effective_chat.id,
                                   message_id=message_id,
-                                  text='🔶 Select the directory you want to use, there are {} subdirectories.'.format(
+                                  text='Select the directory to save, a total of {} subdirectories'.format(
                                       folders_len),
                                   reply_markup=InlineKeyboardMarkup(inline_keyboard_drive_ids))
 
@@ -235,7 +235,7 @@ def set_folders(update, context):
     query = update.callback_query
     page = 1
     if not query:
-        rsp = update.message.reply_text('⚙️ Getting shared drives...')
+        rsp = update.message.reply_text('Get team disk...')
         rsp.done.wait(timeout=60)
         message_id = rsp.result().message_id
     else:
@@ -243,7 +243,7 @@ def set_folders(update, context):
                 (not query.message.reply_to_message or
                  query.from_user.id != query.message.reply_to_message.from_user.id):
             alert_users(context, update.effective_user, 'invalid caller', query.data)
-            query.answer(text='Yo-he!', show_alert=True)
+            query.answer(text='Yo ha', show_alert=True)
             return
         message_id = query.message.message_id
     folder_ids = context.user_data.get(udkey_folders, None)
@@ -263,12 +263,12 @@ def set_folders(update, context):
         inline_keyboard_drive_ids = []
         folder_ids_len = 0
     if folder_ids_len < max_folders:
-        inline_keyboard_drive_ids.insert(0, [InlineKeyboardButton('➕ Add favorite folder', callback_data=callback_query_prefix)])
-    inline_keyboard_drive_ids.append([InlineKeyboardButton('✔️ Done', callback_data='cancel')])
+        inline_keyboard_drive_ids.insert(0, [InlineKeyboardButton('Add a favorite folder', callback_data=callback_query_prefix)])
+    inline_keyboard_drive_ids.append([InlineKeyboardButton('carry out', callback_data='cancel')])
 
     context.bot.edit_message_text(chat_id=update.effective_chat.id,
                                   message_id=message_id,
-                                  text='📁 Total {}/{} Destination Folders ：'.format(
+                                  text='Of {}/{}Favorite Folder：'.format(
                                       folder_ids_len,
                                       max_folders,
                                   ),
